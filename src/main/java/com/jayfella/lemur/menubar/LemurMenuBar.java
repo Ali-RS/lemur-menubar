@@ -36,11 +36,10 @@ public class LemurMenuBar {
 
     private final int startZ;
     private final boolean horizontal;
-    private final boolean stretched;
     private final Camera cam;
 
     public LemurMenuBar(int startZOrder, Camera cam) {
-        this(startZOrder, true, true, cam);
+        this(startZOrder, true, cam);
     }
 
     /**
@@ -50,11 +49,10 @@ public class LemurMenuBar {
      * @param startZOrder the starting z-order of the MenuBar.
      * @param horizontal determines whether this menu is horizontal (true) or vertical (false).
      */
-    public LemurMenuBar(int startZOrder, boolean horizontal, boolean stretched, Camera cam) {
+    public LemurMenuBar(int startZOrder, boolean horizontal, Camera cam) {
 
         this.startZ = startZOrder;
         this.horizontal = horizontal;
-        this.stretched = stretched;
         this.cam = cam;
 
         menuBarContainer = new Container(
@@ -78,14 +76,9 @@ public class LemurMenuBar {
                 menuBarContainer.getLocalTranslation().y,
                 startZ);
 
-        if (stretched) {
-            leftSeparator = new StretchPanel();
-            rightSeparator = new StretchPanel();
-        }
-        else {
-            leftSeparator = null;
-            rightSeparator = null;
-        }
+        leftSeparator = new StretchPanel();
+        rightSeparator = new StretchPanel();
+
     }
 
     public int getStartZ() {
@@ -94,10 +87,6 @@ public class LemurMenuBar {
 
     public boolean isHorizontal() {
         return horizontal;
-    }
-
-    public boolean isStretched() {
-        return stretched;
     }
 
     Camera getCamera() {
@@ -175,18 +164,14 @@ public class LemurMenuBar {
                 menuItems.add(element);
 
                 // add the separator last to stop the menuItems from stretching.
-                if (stretched) {
-                    leftMenuBarContainer.removeChild(leftSeparator);
-                    leftMenuBarContainer.addChild(leftSeparator, 0, leftMenuBarContainer.getChildren().size() + 1);
-                }
+                leftMenuBarContainer.removeChild(leftSeparator);
+                leftMenuBarContainer.addChild(leftSeparator, 0, leftMenuBarContainer.getChildren().size() + 1);
             }
             else if (position == Position.Right) {
 
                 // add the separator first to stop the menuItems from stretching.
-                if (stretched) {
-                    rightMenuBarContainer.removeChild(rightSeparator);
-                    rightMenuBarContainer.addChild(rightSeparator, 0, 0);
-                }
+                rightMenuBarContainer.removeChild(rightSeparator);
+                rightMenuBarContainer.addChild(rightSeparator, 0, 0);
 
                 rightMenuBarContainer.addChild(element.getPanel(), 0, rightMenuBarContainer.getChildren().size() + 1);
                 menuItems.add(element);
@@ -200,10 +185,9 @@ public class LemurMenuBar {
                 menuItems.add(element);
 
                 // add the separator last to stop the menuItems from stretching.
-                //if (stretched) {
-                    leftMenuBarContainer.removeChild(leftSeparator);
-                    leftMenuBarContainer.addChild(leftSeparator, leftMenuBarContainer.getChildren().size() + 1, 0);
-                //}
+                leftMenuBarContainer.removeChild(leftSeparator);
+                leftMenuBarContainer.addChild(leftSeparator, leftMenuBarContainer.getChildren().size() + 1, 0);
+
             }
             else if (position == Position.Right) {
 
@@ -211,15 +195,11 @@ public class LemurMenuBar {
                 menuItems.add(element);
 
                 // add the separator last to stop the menuItems from stretching.
-                //if (stretched) {
                 rightMenuBarContainer.removeChild(rightSeparator);
                 rightMenuBarContainer.addChild(rightSeparator, rightMenuBarContainer.getChildren().size() + 1, 0);
-                //}
-
             }
 
         }
-
 
         element.setMenuBar(this);
 
