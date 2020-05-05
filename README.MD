@@ -13,14 +13,15 @@ public class TestMenuBar extends SimpleApplication {
     public void simpleInitApp() {
         
         final boolean horizontal = true;
-        final boolean stretch = true;
 
-        LemurMenuBar menuBar = new LemurMenuBar(100, horizontal, stretch, cam);
+        LemurMenuBar menuBar = new LemurMenuBar(100, horizontal, cam);
         guiNode.attachChild(menuBar.getSpatial());
+
         menuBar.setLocation(0, cam.getHeight());
-        
+
+        // File Menu
         Menu fileMenu = menuBar.add(new Menu("File"));
-        
+
         // File -> Exit
         MenuItem exitMenuItem = fileMenu.add(new MenuItem("Exit"));
         exitMenuItem.addClickCommand(source -> stop());
@@ -70,7 +71,8 @@ public class TestMenuBar extends SimpleApplication {
         MenuItem aboutMenuItem = helpMenu.add(new MenuItem("About..."));
 
         // finally
-        menuBar.setPreferredWidth(cam.getWidth());
+        // remove this line if you don't want it stretched.
+        menuBar.setPreferredWidth(cam.getWidth());        
 
     }
 
@@ -91,9 +93,8 @@ public class TestMenuBar extends SimpleApplication {
         rootNode.attachChild(cube);
 
         final boolean horizontal = false;
-        final boolean stretch = false;
 
-        LemurMenuBar contextMenu = new LemurMenuBar(901, horizontal, stretch, cam);
+        LemurMenuBar contextMenu = new LemurMenuBar(901, horizontal, cam);
 
         // a click command that removes the context menu after an item is clicked.
         Command<Button> removeContextMenuCommand = source -> {
@@ -119,6 +120,12 @@ public class TestMenuBar extends SimpleApplication {
 
         MenuItem submenu_3 = menu.add(new MenuItem("Sub Menu 1.3"));
         submenu_3.addClickCommand(removeContextMenuCommand);
+
+        MenuItem rightSide_1 = contextMenu.add(new MenuItem("Right Side 1"), LemurMenuBar.Position.Right);
+        rightSide_1.addClickCommand(removeContextMenuCommand);
+
+        MenuItem rightSide_2 = contextMenu.add(new MenuItem("Right Side 2"), LemurMenuBar.Position.Right);
+        rightSide_2.addClickCommand(removeContextMenuCommand);
 
         CursorEventControl.addListenersToSpatial(cube, new DefaultCursorListener() {
 
