@@ -55,9 +55,8 @@ public class TestMenuBar extends SimpleApplication {
         rootNode.attachChild(cube);
 
         final boolean horizontal = false;
-        final boolean stretch = false;
 
-        LemurMenuBar contextMenu = new LemurMenuBar(901, horizontal, stretch, cam);
+        LemurMenuBar contextMenu = new LemurMenuBar(901, horizontal, cam);
 
         // a click command that removes the context menu after an item is clicked.
         Command<Button> removeContextMenuCommand = source -> {
@@ -119,9 +118,8 @@ public class TestMenuBar extends SimpleApplication {
     private void createHorizontalMenu() {
 
         final boolean horizontal = true;
-        final boolean stretch = true;
 
-        LemurMenuBar menuBar = new LemurMenuBar(100, horizontal, stretch, cam);
+        LemurMenuBar menuBar = new LemurMenuBar(100, horizontal, cam);
         guiNode.attachChild(menuBar.getSpatial());
 
         menuBar.setLocation(0, cam.getHeight());
@@ -178,6 +176,7 @@ public class TestMenuBar extends SimpleApplication {
         MenuItem aboutMenuItem = helpMenu.add(new MenuItem("About..."));
 
         // finally
+        // remove this line if you don't want it stretched.
         menuBar.setPreferredWidth(cam.getWidth());
 
     }
