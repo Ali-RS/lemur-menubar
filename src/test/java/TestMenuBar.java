@@ -21,7 +21,7 @@ public class TestMenuBar extends SimpleApplication {
         TestMenuBar testMenuBar = new TestMenuBar();
 
         AppSettings appSettings = new AppSettings(true);
-        appSettings.setResolution(800, 600);
+        appSettings.setResolution(1600, 900);
 
         testMenuBar.setSettings(appSettings);
         testMenuBar.setShowSettings(false);
@@ -84,6 +84,12 @@ public class TestMenuBar extends SimpleApplication {
         MenuItem submenu_3 = menu.add(new MenuItem("Sub Menu 1.3"));
         submenu_3.addClickCommand(removeContextMenuCommand);
 
+        MenuItem rightSide_1 = contextMenu.add(new MenuItem("Right Side 1"), LemurMenuBar.Position.Right);
+        rightSide_1.addClickCommand(removeContextMenuCommand);
+
+        MenuItem rightSide_2 = contextMenu.add(new MenuItem("Right Side 2"), LemurMenuBar.Position.Right);
+        rightSide_2.addClickCommand(removeContextMenuCommand);
+
         CursorEventControl.addListenersToSpatial(cube, new DefaultCursorListener() {
 
             @Override
@@ -106,6 +112,7 @@ public class TestMenuBar extends SimpleApplication {
             }
 
         });
+
 
     }
 
