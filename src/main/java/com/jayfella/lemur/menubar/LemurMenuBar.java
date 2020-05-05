@@ -65,8 +65,10 @@ public class LemurMenuBar {
                 new SpringGridLayout(Axis.Y, Axis.X, FillMode.Last, FillMode.Last)), 0, 0);
         leftMenuBarContainer.setBackground(new QuadBackgroundComponent(ColorRGBA.BlackNoAlpha));
 
-        rightMenuBarContainer = menuBarContainer.addChild(new Container(
-                new SpringGridLayout(Axis.Y, Axis.X, FillMode.First, FillMode.First)), 0, 1);
+        rightMenuBarContainer = horizontal
+                ? menuBarContainer.addChild(new Container(new SpringGridLayout(Axis.Y, Axis.X, FillMode.First, FillMode.First)), 0, 1)
+                : menuBarContainer.addChild(new Container(new SpringGridLayout(Axis.Y, Axis.X, FillMode.Last, FillMode.Last)), 0, 1);
+
         rightMenuBarContainer.setBackground(new QuadBackgroundComponent(ColorRGBA.BlackNoAlpha));
 
         menuBarContainer.setQueueBucket(RenderQueue.Bucket.Gui);
@@ -186,19 +188,36 @@ public class LemurMenuBar {
                     rightMenuBarContainer.addChild(rightSeparator, 0, 0);
                 }
 
-                rightMenuBarContainer.addChild(element.getPanel(), 0, rightMenuBarContainer.getChildren().size());
+                rightMenuBarContainer.addChild(element.getPanel(), 0, rightMenuBarContainer.getChildren().size() + 1);
                 menuItems.add(element);
             }
 
         }
-        else {
-            menuBarContainer.addChild(element.getPanel(), menuItems.size(), 0);
-            menuItems.add(element);
+        else { // vertical
 
-            // add the separator last to stop the menuItems from stretching.
-            if (stretched) {
-                menuBarContainer.addChild(leftSeparator, menuItems.size() + 1, 0);
+            if (position == Position.Left) {
+                leftMenuBarContainer.addChild(element.getPanel(), leftMenuBarContainer.getChildren().size(), 0);
+                menuItems.add(element);
+
+                // add the separator last to stop the menuItems from stretching.
+                //if (stretched) {
+                    leftMenuBarContainer.removeChild(leftSeparator);
+                    leftMenuBarContainer.addChild(leftSeparator, leftMenuBarContainer.getChildren().size() + 1, 0);
+                //}
             }
+            else if (position == Position.Right) {
+
+                rightMenuBarContainer.addChild(element.getPanel(), rightMenuBarContainer.getChildren().size(), 0);
+                menuItems.add(element);
+
+                // add the separator last to stop the menuItems from stretching.
+                //if (stretched) {
+                rightMenuBarContainer.removeChild(rightSeparator);
+                rightMenuBarContainer.addChild(rightSeparator, rightMenuBarContainer.getChildren().size() + 1, 0);
+                //}
+
+            }
+
         }
 
 
