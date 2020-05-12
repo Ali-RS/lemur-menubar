@@ -3,6 +3,16 @@
 
 An implementation of a horizontal and vertical menu system using the Lemur framework.
 
+```groovy
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation "com.jayfella-lemur-menubar:1.0.1"
+}
+```
+
 #### Example horizontal menu
 ```java
 
