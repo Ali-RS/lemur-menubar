@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-    implementation "com.jayfella-lemur-menubar:1.0.1"
+    implementation "com.jayfella:lemur-menubar:1.0.1"
 }
 ```
 
