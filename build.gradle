@@ -3,6 +3,9 @@ plugins {
     id 'maven-publish'
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -12,7 +15,7 @@ publishing {
 }
 
 group 'com.jayfella'
-version '1.0.0'
+version '1.0.1'
 
 repositories {
     jcenter()
