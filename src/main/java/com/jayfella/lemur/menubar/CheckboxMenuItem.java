@@ -31,7 +31,7 @@ public class CheckboxMenuItem implements MenuElement {
     }
 
     public CheckboxMenuItem(String icon, String text) {
-        checkbox = new Checkbox(text, new ElementId(ELEMENT_ID), "glass");
+        checkbox = new Checkbox(text, new ElementId(ELEMENT_ID), null);
 
         if (icon != null) {
             IconComponent iconComponent = new IconComponent(icon);
