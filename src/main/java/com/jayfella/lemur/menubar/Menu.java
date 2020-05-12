@@ -18,7 +18,7 @@ public class Menu implements MenuElement {
 
     private final Button button;
     private final List<MenuElement> menuItems = new ArrayList<>();
-    private final Container childrenContainer = new Container(new SpringGridLayout(), new ElementId("menu-children"), "glass");
+    private final Container childrenContainer = new Container(new SpringGridLayout(), new ElementId("menu-children"));
 
     private boolean enabled = true;
 
