@@ -211,7 +211,11 @@ public class LemurMenuBar {
     }
 
     public void remove(MenuElement element) {
-        menuBarContainer.removeChild(element.getPanel());
+
+        // we don't know which one it belongs to, but it can only belong to one of them.
+        leftMenuBarContainer.removeChild(element.getPanel());
+        rightMenuBarContainer.removeChild(element.getPanel());
+
         menuItems.remove(element);
     }
 
